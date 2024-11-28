@@ -1,0 +1,38 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>รายการสั่งซื้อ</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="order-details">
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title>
+          รายการสั่งซื้อ
+        </ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <p>คุณ: ปิยังกูร อัมพร | คิวที่: 1</p>
+        <p>เบอร์โทร: 0819141884</p>
+        
+        <!-- ปุ่มต่างๆ ย้ายมาอยู่ภายใน ion-card -->
+        <ion-button expand="block" color="success" (click)="goToOrderList()">
+          ดูรายการอาหาร
+        </ion-button>
+
+        <ion-button expand="block" color="danger">
+          เสร็จสิ้น
+        </ion-button>
+           <!--รายการที่สองงงงงงงงงงงงงง-->
+       
+
+        <ion-button expand="block" color="secondary" (click)="logout()">
+          กลับไปหน้าแรก
+        </ion-button>
+      </ion-card-content>
+    </ion-card>
+  </div>
+
+  
+</ion-content>

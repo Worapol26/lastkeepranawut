@@ -1,0 +1,30 @@
+.order-details {
+    text-align: center;
+    margin-top: 20px;
+  }
+  
+  ion-card-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    background-color: #ffc823;
+    padding: 10px;
+    border-radius: 10px;
+  }
+  
+  ion-button {
+    margin-top: 10px;
+    font-size: 1.2rem;
+  }
+  
+  ion-button[color="success"] {
+    background-color: #27ae60;
+  }
+  
+  ion-button[color="danger"] {
+    background-color: #e74c3c;
+  }
+  
+  ion-button[color="secondary"] {
+    background-color: #c0392b;
+  }
+  

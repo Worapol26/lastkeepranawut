@@ -1,0 +1,17 @@
+.login-page {
+    background-color: #f0f0f0; /* เปลี่ยนสีพื้นหลังได้ตามที่ต้องการ */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+  }
+  
+  .login-container {
+    max-width: 400px;
+    width: 100%;
+    background-color: #ff88ef; /* สีพื้นหลังของกล่องล็อกอิน */
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    padding: 20px;
+  }
+  

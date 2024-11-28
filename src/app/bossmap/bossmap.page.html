@@ -1,0 +1,31 @@
+  <ion-header [translucent]="true">
+    <ion-toolbar>
+      <ion-title></ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-content class="ion-padding" color="light">
+    <ion-card class="ion-padding" color="dark">
+      <ion-card-header>
+        <ion-card-title class="ion-text-center">เข้าสู่ระบบ</ion-card-title>
+      </ion-card-header>
+
+      <ion-card-content>
+        <form>
+          <ion-item color="secondary">
+            <ion-label position="floating">กรอกชื่อผู้ใช้</ion-label>
+            <ion-input type="text" placeholder=""></ion-input>
+          </ion-item>
+
+          <ion-item color="secondary" class="ion-margin-top">
+            <ion-label position="floating">รหัสผ่าน</ion-label>
+            <ion-input type="" placeholder=""></ion-input>
+          </ion-item>
+
+          <ion-button expand="block" color="primary" class="ion-margin-top" (click)="goToJao()">
+            เข้าสู่ระบบ
+          </ion-button>
+        </form>
+      </ion-card-content>
+    </ion-card>
+  </ion-content>

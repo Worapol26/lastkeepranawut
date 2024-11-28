@@ -1,0 +1,47 @@
+
+
+.left {
+    text-align: left;
+}
+
+.img{
+    width: 180px;
+    height: 200px;
+}
+.center {
+    text-align: center;
+}
+
+.product-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  background-color: #ff145e;
+  height: 340%;
+}
+
+.product-card {
+  width: 150px;
+  margin: 10px;
+  text-align: center;
+}
+
+img {
+  width: 100%;  /* ใช้ 100% ของความกว้างของ container */
+  height: auto;  /* ให้สูงอัตโนมัติ เพื่อรักษาสัดส่วน */
+  object-fit: contain;  /* ป้องกันการบิดเบือนของภาพ */
+}
+
+.product-info {
+  margin-top: 10px;
+}
+
+ion-button {
+  margin-top: 10px;
+}
+
+.custom-card {
+  border: 2px solid black;
+  border-radius: 10px;
+  padding: 10px;
+}

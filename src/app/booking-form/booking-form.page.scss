@@ -1,0 +1,45 @@
+.booking-card {
+    text-align: center;
+    background-color: #ffd1dc; /* พื้นหลังสีชมพูอ่อน */
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    max-width: 350px;
+    margin-top: 150px ;
+    margin-right: 10px ;
+    margin-left: 15px ;
+
+  }
+  
+  .booking-title {
+    font-size: 1.4rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #ff1493; /* สีชมพูเข้ม */
+  }
+  
+  .queue-label {
+    font-size: 1.2rem;
+    margin-bottom: 15px;
+    color: #ff1493; /* สีชมพูเข้ม */
+  }
+  
+  .queue-number {
+    font-size: 5rem;
+    font-weight: bold;
+    color: #ff1493; /* สีชมพูเข้ม */
+    margin: 20px 0;
+  }
+  
+  .success-button {
+    --background: #ff69b4; /* สีปุ่มสีชมพูสด */
+    --color: white;
+    font-size: 1.2rem;
+    margin-top: 20px;
+    border-radius: 12px;
+  }
+  
+  ion-content {
+    --background: #ffe4e1; /* สีพื้นหลังของหน้าทั้งหมดเป็นสีชมพูอ่อน */
+  }
+  

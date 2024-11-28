@@ -1,0 +1,64 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="pink">
+    <ion-title style="padding-left: 170px; font-size: 30px;">
+      JaJa
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" color="cream">
+
+ <!-- ส่วนต้อนรับ -->
+<div style="text-align: center; background-color: #fbe170; padding: 20px; font-size: 20px; 
+border-radius: 15px; 
+box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+margin: 10px auto; width: 90%;">
+<ion-icon name="happy-outline" style="font-size: 35px; color: #FFA000;"></ion-icon> 
+<span style="font-weight: bold;">สวัสดีค่ะ ยินดีต้อนรับสู่แอป JaJa</span>
+</div>
+
+<!-- ข้อความแนะนำ/สโลแกน -->
+<div style="text-align: center; background-color: #F8BBD0; padding: 20px; margin-top: 15px; 
+border-radius: 15px; 
+box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+margin: 10px auto; width: 90%; position: relative;">
+
+  <!-- รูปภาพ -->
+  <img src="../../assets/jajalogo.png" style="width: 100px; height: auto; position: absolute; top: -15px; left: 20px;">
+
+  <!-- ข้อความ -->
+  <span style="font-size: 17px; font-style: italic; padding-left: 100px;">ใช้ JaJa หมดปัญหารอคิวนาน...</span>
+
+</div>
+
+
+
+
+  <!-- ปุ่มสินค้า -->
+  <div style="text-align: center; margin-top: -70px;">
+    <ion-button class="vertical-button custom-button" (click)="goToType()" color="light" shape="round" style="width: 150px; height: 150px;">
+      <ion-icon name="cart-outline" style="font-size: 60px;"></ion-icon>
+      <span style="font-size: 20px;">สินค้า</span>
+    </ion-button>
+  </div>
+
+  <!-- ปุ่มข่าวสาร -->
+  <div style="text-align: center; margin-top: -30px;">
+    <ion-button class="vertical-button custom-button" id="open-modal" color="light" shape="round" style="width: 150px; height: 150px;">
+      <ion-icon name="calendar-outline" style="font-size: 60px;"></ion-icon>
+      <span style="font-size: 20px;">ข่าวสาร</span>
+    </ion-button>
+  </div>
+
+  <!-- โมดัลแสดงข่าวสาร -->
+  <ion-modal trigger="open-modal" [initialBreakpoint]="0.25" [breakpoints]="[0, 0.25, 0.5, 0.75]" handleBehavior="cycle">
+    <ng-template>
+      <ion-content class="ion-padding">
+        <div class="ion-margin-top">
+          <img src="../../assets/20231103_InfoGraphic_Holiday2023-.png" alt="">
+        </div>
+      </ion-content>
+    </ng-template>
+  </ion-modal>
+
+</ion-content>

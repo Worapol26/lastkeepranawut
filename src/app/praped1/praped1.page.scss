@@ -1,0 +1,39 @@
+.item-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 150px; /* ความสูงเท่ากันทุกอัน */
+  width: 150px;  /* ความกว้างเท่ากันทุกอัน */
+  margin: 10px;
+  background-color: #f9f9f9;
+  border-radius: 10px;
+}
+
+.button-container {
+  display: flex;
+  flex-direction: column; /* จัดให้ปุ่มแต่ละปุ่มอยู่คนละบรรทัด */
+  align-items: center;
+  justify-content: center;
+  margin-top: 15px;
+}
+
+.custom-button {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 250px; /* กำหนดขนาดเท่ากัน */
+  height: 150px; /* กำหนดขนาดเท่ากัน */
+  text-align: center;
+  margin-bottom: 20px; /* เว้นช่องว่างระหว่างปุ่มแต่ละปุ่ม */
+}
+
+.custom-button img {
+  width: 90px;
+  height: 125px;
+}
+
+.custom-button ion-label {
+  font-size: 20px;
+}
