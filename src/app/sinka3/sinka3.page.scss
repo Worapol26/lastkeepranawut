@@ -1,5 +1,5 @@
 .bg {
-  background-color: #F7B5CA;
+  background-color: #FFB6C1;  /* เปลี่ยนเป็นสีชมพูอ่อนที่ดูนุ่มนวล */
   height: 200%;
 }
 
@@ -7,49 +7,50 @@
   text-align: left;
 }
 
-.img{
+.img {
   width: 180px;
   height: 180px;
 }
+
 .center {
   text-align: center;
 }
-.spon{
+
+.spon {
   width: 180px;
   height: 170px;
-  
-}.product-container {
-display: flex;
-flex-wrap: wrap;
-justify-content: center;
-background-color: #ff145e;
-height: 280%;
+}
+
+.product-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  background-color: #FFB6C1;  /* สีชมพูเข้มขึ้นเพื่อให้ตัดกับพื้นหลัง */
+  height: 280%;
 }
 
 .product-card {
-width: 150px;
-margin: 10px;
-text-align: center;
+  width: 150px;
+  margin: 10px;
+  text-align: center;
 }
 
 img {
-width: 100%;  /* ใช้ 100% ของความกว้างของ container */
-height: auto;  /* ให้สูงอัตโนมัติ เพื่อรักษาสัดส่วน */
-object-fit: contain;  /* ป้องกันการบิดเบือนของภาพ */
+  width: 100%;  /* ใช้ 100% ของความกว้างของ container */
+  height: auto;  /* ให้สูงอัตโนมัติ เพื่อรักษาสัดส่วน */
+  object-fit: contain;  /* ป้องกันการบิดเบือนของภาพ */
 }
 
 .product-info {
-margin-top: 10px;
+  margin-top: 10px;
 }
 
 ion-button {
-margin-top: 10px;
+  margin-top: 10px;
 }
 
 .custom-card {
-border: 2px solid #000000;
-border-radius: 10px;
-padding: 10px;
+  border: 2px solid #000000;
+  border-radius: 10px;
+  padding: 10px;
 }
-
-

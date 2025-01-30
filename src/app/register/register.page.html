@@ -1,0 +1,27 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title class="ion-text-center">สมัครสมาชิก</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ion-card class="ion-padding">
+    <ion-item>
+      <ion-label position="floating">ชื่อผู้ใช้</ion-label>
+      <ion-input [(ngModel)]="username" type="text"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">รหัสผ่าน</ion-label>
+      <ion-input [(ngModel)]="password" type="password"></ion-input>
+    </ion-item>
+
+    <ion-button expand="block" color="primary" class="ion-margin-top" (click)="register()">
+      สมัครสมาชิก
+    </ion-button>
+
+    <ion-button expand="block" fill="clear" (click)="navCtrl.navigateBack('/bossmap')">
+      ย้อนกลับ
+    </ion-button>
+  </ion-card>
+</ion-content>

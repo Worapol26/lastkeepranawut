@@ -4,66 +4,62 @@
   </ion-toolbar>
 </ion-header>
 
-
-
-
 <ion-content [fullscreen]="true" color="pink">
-
-  <ion-content >
-    <div class="product-container">
-
-      <ion-grid class="center">
-        <ion-row>
-
-          <ion-col size="6" *ngFor="let product of sinka">
+  <div class="product-container">
+    <ion-grid class="center">
+      <ion-row>
+        <!-- แสดงสินค้า 1 -->
+        <ion-col size="6" *ngFor="let product of sinka">
           <ion-card class="custom-card" color="cream">
             <img [src]="product.imageURL" class="img">
             <div class="center">
               {{product.name}} <br>
               ราคา : {{product.price}} บาท<br>
-              <ion-button style="font-size: 11px;" color="green">
+              <ion-button style="font-size: 11px;" color="green" (click)="addToCart(product)">
                 <ion-icon name="cart-outline"></ion-icon>
                 เพิ่มสินค้าลงตะกร้า
               </ion-button>
             </div>
-          </ion-card>
-          </ion-col>
+          </ion-card> 
+        </ion-col>
 
-          <ion-col *ngFor="let product of sinka2" size="6">
-            <ion-card class="custom-card" color="cream">
+        <!-- แสดงสินค้า 2 -->
+        <ion-col *ngFor="let product of sinka2" size="6">
+          <ion-card class="custom-card" color="cream">
             <img [src]="product.imageURL" class="img">
             <div class="center">
               {{product.name}} <br>
               ราคา : {{product.price}} บาท<br>
-              <ion-button style="font-size: 11px;" color="green">
+              <ion-button style="font-size: 11px;" color="green" (click)="addToCart(product)">
                 <ion-icon name="cart-outline"></ion-icon>
                 เพิ่มสินค้าลงตะกร้า
               </ion-button>
             </div>
           </ion-card>
-          </ion-col>
-
-        </ion-row>
-      </ion-grid>
-    </div>
-
-  </ion-content>
-
-
-
-  <ion-fab slot="fixed" vertical="bottom" horizontal="end">
-    <ion-fab-button color="cream">
-      <ion-icon name="chevron-up-circle"></ion-icon>
-    </ion-fab-button>
-    <ion-fab-list side="top">
-      <ion-fab-button (click)="goToTakra()">
-        <ion-icon name="cart-outline"></ion-icon>
-      </ion-fab-button>
-
-      <ion-fab-button (click)="goToPraped()">
-        <ion-icon name="bag-handle-outline"></ion-icon>
-      </ion-fab-button>
-    </ion-fab-list>
-  </ion-fab>
-
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
 </ion-content>
+
+<!-- FAB Buttons -->
+<ion-fab slot="fixed" vertical="bottom" horizontal="end">
+  <!-- ปุ่มสำหรับเลื่อนขึ้น -->
+  <ion-fab-button color="light">
+    <ion-icon name="cart-outline"></ion-icon> <!-- ไอคอนตะกร้า -->
+  </ion-fab-button>
+  
+  <ion-fab-list side="top">
+    <!-- ปุ่มเพิ่มสินค้าลงตะกร้า -->
+    <ion-fab-button (click)="goToTakra()" color="light">
+      <ion-icon name="cart-outline"></ion-icon>
+    </ion-fab-button>
+
+    <!-- ปุ่มถุงช้อปปิ้ง -->
+    <ion-fab-button (click)="goToPraped()" color="light">
+      <ion-icon name="bag-handle-outline"></ion-icon>
+    </ion-fab-button>
+  </ion-fab-list>
+</ion-fab>
+
+  

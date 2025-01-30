@@ -1,3 +1,10 @@
+// สีหลักและสีรองสำหรับธีมชมพู
+$primary-color: #EC407A; // สีชมพูสด
+$secondary-color: #D81B60; // สีชมพูเข้ม
+$light-pink: #FCE4EC; // สีชมพูอ่อน
+$white-color: #000000; // สีขาว
+
+// รูปแบบของ item-container
 .item-container {
   display: flex;
   flex-direction: column;
@@ -6,18 +13,34 @@
   height: 150px; /* ความสูงเท่ากันทุกอัน */
   width: 150px;  /* ความกว้างเท่ากันทุกอัน */
   margin: 10px;
-  background-color: #f9f9f9;
-  border-radius: 10px;
+  
+  // เพิ่ม gradient เพื่อให้พื้นหลังมีมิติ
+  background: linear-gradient(135deg, $light-pink 0%, $primary-color 100%); // ใช้ gradient จากชมพูอ่อนเป็นชมพูสด
+  
+  border-radius: 15px; // ขอบมนให้ดูนุ่มนวล
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); // เพิ่มเงาให้ดูมีมิติ
+  transition: all 0.3s ease; // เพิ่ม transition สำหรับการเปลี่ยนแปลง
+  
+  // เพิ่มการเปลี่ยนแปลงเมื่อ hover
+  &:hover {
+    background: linear-gradient(135deg, $primary-color 0%, $secondary-color 100%); // เปลี่ยน gradient เมื่อ hover
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2); // ขยายเงาเมื่อ hover
+  }
 }
 
-.button-container {
-  display: flex;
-  flex-direction: column; /* จัดให้ปุ่มแต่ละปุ่มอยู่คนละบรรทัด */
-  align-items: center;
-  justify-content: center;
-  margin-top: 15px;
+// รูปภาพในปุ่ม
+.custom-button img {
+  width: 90px;
+  height: 125px;
+  border-radius: 10px; // ขอบมนให้กับรูปภาพ
+  object-fit: cover; // ป้องกันรูปภาพเบียดกัน
+  transition: transform 0.3s ease; // เพิ่ม transition สำหรับการเปลี่ยนแปลง
+  &:hover {
+    transform: scale(1.1); // ขยายรูปภาพเมื่อ hover
+  }
 }
 
+// ปุ่ม
 .custom-button {
   display: flex;
   flex-direction: column;
@@ -27,13 +50,34 @@
   height: 150px; /* กำหนดขนาดเท่ากัน */
   text-align: center;
   margin-bottom: 20px; /* เว้นช่องว่างระหว่างปุ่มแต่ละปุ่ม */
+  background-color: $primary-color; // สีพื้นหลังของปุ่ม
+  color: $white-color; // สีข้อความในปุ่ม
+  border: none; // ไม่มีกรอบ
+  border-radius: 15px; // ขอบมน
+  cursor: pointer; // เปลี่ยน cursor เป็นมือ
+  transition: background-color 0.3s, transform 0.3s ease; // เพิ่ม transition สำหรับ hover
+  &:hover {
+    background-color: $secondary-color; // เปลี่ยนสีเมื่อ hover
+    transform: translateY(-5px); // ยกปุ่มขึ้นเมื่อ hover
+  }
 }
 
-.custom-button img {
-  width: 90px;
-  height: 125px;
-}
-
+// ป้ายข้อความในปุ่ม
 .custom-button ion-label {
   font-size: 20px;
+  font-weight: bold; // ทำให้ข้อความหนาขึ้น
+  color: $white-color; // ให้ข้อความมีสีขาว
+  transition: color 0.3s ease; // เพิ่ม transition สำหรับการเปลี่ยนสีข้อความ
+  &:hover {
+    color: $white-color; // ข้อความยังคงสีขาวแม้เมื่อ hover
+  }
+}
+
+// ปุ่ม Container
+.button-container {
+  display: flex;
+  flex-direction: column; /* จัดให้ปุ่มแต่ละปุ่มอยู่คนละบรรทัด */
+  align-items: center;
+  justify-content: center;
+  margin-top: 15px;
 }

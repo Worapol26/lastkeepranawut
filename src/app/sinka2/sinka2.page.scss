@@ -1,55 +1,65 @@
 .bg {
-    background-color: #F7B5CA;
-    height: 200%;
+  background-color: #FFCCCB;  /* เปลี่ยนจาก #F7B5CA เป็นสีชมพูอ่อนที่นุ่มขึ้น */
+  height: 200%;
 }
 
 .left {
-    text-align: left;
+  text-align: left;
 }
 
 .img{
-    width: 180px;
-    height: 180px;
-}
-.center {
-    text-align: center;
-}
-.spon{
-    width: 180px;
-    height: 170px;
-    
-}.product-container {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  background-color: #ff145e;
-  height: 280%;
+  width: 180px;
+  height: 180px;
 }
 
-.product-card {
-  width: 150px;
-  margin: 10px;
+.center {
   text-align: center;
 }
 
+.spon{
+  width: 180px;
+  height: 170px;
+}
+
+.product-container {
+display: flex;
+flex-wrap: wrap;
+justify-content: center;
+background-color: #FFB6C1;  /* ใช้สีชมพูอ่อนเพื่อให้ดูอ่อนโยน */
+height: 280%;
+}
+
+.product-card {
+width: 150px;
+margin: 10px;
+text-align: center;
+}
+
 img {
-  width: 100%;  /* ใช้ 100% ของความกว้างของ container */
-  height: auto;  /* ให้สูงอัตโนมัติ เพื่อรักษาสัดส่วน */
-  object-fit: contain;  /* ป้องกันการบิดเบือนของภาพ */
+width: 100%;  /* ใช้ 100% ของความกว้างของ container */
+height: auto;  /* ให้สูงอัตโนมัติ เพื่อรักษาสัดส่วน */
+object-fit: contain;  /* ป้องกันการบิดเบือนของภาพ */
 }
 
 .product-info {
-  margin-top: 10px;
+margin-top: 10px;
 }
 
 ion-button {
-  margin-top: 10px;
+margin-top: 10px;
+--background: #FF1493;  /* ใช้สีชมพูสดใสให้ปุ่ม */
+--color: white;  /* ข้อความบนปุ่มเป็นสีขาว */
 }
 
 .custom-card {
-  border: 2px solid #000000;
-  border-radius: 10px;
-  padding: 10px;
+border: 2px solid #FFC0CB;  /* เปลี่ยนจาก #000000 เป็นสีชมพูอ่อน (Pink) เพื่อให้เข้ากับธีม */
+border-radius: 10px;
+padding: 10px;
 }
 
-
+.custom-toast {
+color: rgb(255, 255, 255);  /* ข้อความเป็นสีขาว */
+background-color: #FF6347;  /* เปลี่ยนพื้นหลังเป็นสีแดงอมส้ม (Tomato) เพื่อให้ดูสดใส */
+font-size: 16px;  /* ขนาดตัวอักษร */
+font-weight: bold;  /* ตัวหนา */
+}

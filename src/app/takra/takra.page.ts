@@ -1,10 +1,11 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { NavController } from '@ionic/angular';
 import { Router } from '@angular/router';
-import { text } from 'ionicons/icons';
+import { CartService } from '../services/cart.service';
 
 // สร้าง interface สำหรับสินค้าในตะกร้า
 interface CartItem {
+  id: number;
   name: string;
   price: number;
   quantity: number;
@@ -16,32 +17,47 @@ interface CartItem {
   templateUrl: './takra.page.html',
   styleUrls: ['./takra.page.scss'],
 })
-export class TakraPage {
-  // ระบุชนิดข้อมูลของ cartItems เป็น CartItem[]
-  cartItems: CartItem[] = [
-    { name: 'มาม่าต้มยำกุ้ง', price: 8, quantity: 1, imageURL: 'assets/MAMAKUNGs.png' },
-    { name: 'น้ำเป๊ปซี่', price: 13, quantity: 2, imageURL: 'assets/pepsi01.png' }
-  ];
-  
+export class TakraPage implements OnInit {
+  cartItems: CartItem[] = []; // ตัวแปรเก็บสินค้าที่ดึงจากฐานข้อมูล
 
-  // คำนวณยอดรวม
+  constructor(private navCtrl: NavController, private router: Router, private cartService: CartService) {}
+
+  ngOnInit() {
+    this.loadCart(); // โหลดข้อมูลสินค้าตอนเปิดหน้า
+  }
+
+  // ✅ โหลดข้อมูลสินค้าจาก API
+  loadCart() {
+    this.cartService.getCartItems().subscribe({
+      next: (res) => {
+        this.cartItems = res; // เก็บข้อมูลสินค้าในตัวแปร
+        console.log('📌 สินค้าในตะกร้า:', this.cartItems);
+      },
+      error: (err) => {
+        console.error('❌ เกิดข้อผิดพลาดในการดึงข้อมูลสินค้า:', err);
+      },
+    });
+  }
+
+  // ✅ คำนวณยอดรวม
   get totalPrice() {
     return this.cartItems.reduce((sum, item) => sum + (item.price * item.quantity), 0);
   }
 
-  constructor(private navCtrl: NavController, private router: Router) {}
-   goToBook(){
-    this.navCtrl.navigateForward('../../')
-   }
-
-
-
-  // กำหนดชนิดของ parameter product เป็น CartItem
-  removeFromCart(product: CartItem) {
-    this.cartItems = this.cartItems.filter(item => item !== product);
+  // ✅ ฟังก์ชันลบสินค้าออกจากตะกร้า
+  removeFromCart(productId: number) {
+    this.cartService.removeFromCart(productId).subscribe({
+      next: () => {
+        this.cartItems = this.cartItems.filter((item) => item.id !== productId);
+        console.log('✅ ลบสินค้าสำเร็จ');
+      },
+      error: (err) => {
+        console.error('❌ เกิดข้อผิดพลาดในการลบสินค้า:', err);
+      },
+    });
   }
 
-  // นำทางไปยังหน้าสรุปการสั่งซื้อ
+  // ✅ นำทางไปยังหน้าสรุปการสั่งซื้อ
   goToCheckout() {
     if (this.cartItems.length > 0) {
       this.navCtrl.navigateForward('/praped1');
@@ -49,20 +65,21 @@ export class TakraPage {
       alert('ตะกร้าของคุณว่างเปล่า กรุณาเพิ่มสินค้าในตะกร้า');
     }
   }
-  public alertButtons = [{
-    
+
+  public alertButtons = [
+    {
       text: 'ยกเลิก',
       role: 'cancel',
       handler: () => {
-        console.log('Alert canceled');
+        console.log('❌ Alert canceled');
       },
     },
     {
       text: 'ยืนยัน',
       role: 'confirm',
       handler: () => {
-        console.log('Alert confirmed');
-        this.router.navigate(['../../booking-form'])
+        console.log('✅ Alert confirmed');
+        this.router.navigate(['../../booking-form']);
       },
     },
   ];
@@ -77,6 +94,5 @@ export class TakraPage {
         maxlength: 10,
       },
     },
-
   ];
 }

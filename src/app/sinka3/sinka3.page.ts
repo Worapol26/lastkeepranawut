@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { addIcons } from 'ionicons';
 import { bagHandleOutline } from 'ionicons/icons';
-import { NavController } from '@ionic/angular';
+import { NavController, ToastController } from '@ionic/angular';
+import { CartService } from '../services/cart.service'; // ✅ เพิ่ม CartService
 
 @Component({
   selector: 'app-sinka3',
@@ -10,19 +11,58 @@ import { NavController } from '@ionic/angular';
 })
 export class Sinka3Page implements OnInit {
 
-  constructor(private navCtrl : NavController) { addIcons({ bagHandleOutline }); }
-
-  ngOnInit() {
+  constructor(
+    private navCtrl: NavController,
+    private toastController: ToastController,
+    private cartService: CartService // ✅ ใช้ CartService เพื่อส่งสินค้าไปยัง API
+  ) { 
+    addIcons({ bagHandleOutline });
   }
 
-  goToPraped(){
-    this.navCtrl.navigateForward('/praped1')
+  ngOnInit() {}
+
+  goToPraped() {
+    this.navCtrl.navigateForward('/praped1');
   }
 
-  goToTakra(){
-    this.navCtrl.navigateForward('/takra')
+  goToTakra() {
+    this.navCtrl.navigateForward('/takra');
   }
 
+  // ✅ ฟังก์ชันเพิ่มสินค้าลงตะกร้า และส่งไปยัง API
+  async addToCart(product: any) {
+    const productWithQuantity = {
+      ...product,
+      quantity: 1, // ✅ กำหนดจำนวนเริ่มต้นเป็น 1
+      imageURL: product.imageURL // ✅ เพิ่ม imageURL
+    };
+
+    console.log('🚀 กำลังเพิ่มสินค้า:', productWithQuantity);
+
+    this.cartService.addToCart(productWithQuantity).subscribe({
+      next: async (res) => {
+        console.log('✅ API Response:', res);
+        const toast = await this.toastController.create({
+          message: `${product.name} ถูกเพิ่มไปยังตะกร้าแล้ว!`,
+          duration: 2000,
+          position: 'bottom',
+          cssClass: 'custom-toast'
+        });
+        toast.present();
+      },
+      error: async (err) => {
+        console.error('❌ เกิดข้อผิดพลาดจาก API:', err);
+        const toast = await this.toastController.create({
+          message: 'เกิดข้อผิดพลาดในการเพิ่มสินค้า',
+          duration: 2000,
+          position: 'bottom',
+        });
+        toast.present();
+      }
+    });
+  }
+
+  // ✅ ข้อมูลสินค้า
   sinka5 = [
     {
       id: 1,
@@ -44,8 +84,9 @@ export class Sinka3Page implements OnInit {
       price: 15,
       detail: 'Knorr Cup Joke Fish Flavor',
       imageURL: '../../assets/JOKECUP.png'
-    },
-  ]
+    }
+  ];
+
   sinka6 = [
     {
       id: 2,
@@ -53,42 +94,48 @@ export class Sinka3Page implements OnInit {
       price: 16,
       detail: 'Joke Cup Salted Egg Flavor',
       imageURL: '../../assets/JOKEKAI.png'
-    }, {
+    },
+    {
       id: 4,
       name: 'มาม่ารสแกงเขียวหวาน',
       price: 7,
-      detail: 'Mama Tom Yum Shrimp Creamy Soup',
+      detail: 'Mama Green Curry Flavor',
       imageURL: '../../assets/whan.png'
-    },{
+    },
+    {
       id: 6,
       name: 'มาม่ารสหมูสับ',
       price: 15,
       detail: 'Mama Minced Pork Flavor',
       imageURL: '../../assets/MAMAMUSUP.png'
-    },{
-      id: 6,
+    },
+    {
+      id: 7,
       name: 'มาม่ารสต้มยำกุ้ง',
       price: 15,
-      detail: 'Mama Minced Pork Flavor',
+      detail: 'Mama Tom Yum Flavor',
       imageURL: '../../assets/MAMAKUNGs.png'
-    },{
-      id: 6,
+    },
+    {
+      id: 8,
       name: 'OK มาม่ารสไข่เค็ม',
       price: 15,
-      detail: 'Mama Minced Pork Flavor',
+      detail: 'Mama Salted Egg Flavor',
       imageURL: '../../assets/OKMAMA.png'
-    },{
-      id: 6,
+    },
+    {
+      id: 9,
       name: 'ซัมยัง มาม่าเผ็ดเกาหลี',
       price: 15,
-      detail: 'Mama Minced Pork Flavor',
+      detail: 'Samyang Korean Spicy',
       imageURL: '../../assets/KOREA1.png'
-    },{
-      id: 6,
+    },
+    {
+      id: 10,
       name: 'ซัมยัง มาม่าเผ็ดเกาหลีชีส',
       price: 15,
-      detail: 'Mama Minced Pork Flavor',
+      detail: 'Samyang Korean Spicy Cheese',
       imageURL: '../../assets/KOREA2.png'
-    },
-  ]
+    }
+  ];
 }
