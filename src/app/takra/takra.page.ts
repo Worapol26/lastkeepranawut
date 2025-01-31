@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { NavController } from '@ionic/angular';
+import { NavController, AlertController } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { CartService } from '../services/cart.service';
+import { HttpClient } from '@angular/common/http';
 
 // สร้าง interface สำหรับสินค้าในตะกร้า
 interface CartItem {
@@ -18,19 +19,27 @@ interface CartItem {
   styleUrls: ['./takra.page.scss'],
 })
 export class TakraPage implements OnInit {
-  cartItems: CartItem[] = []; // ตัวแปรเก็บสินค้าที่ดึงจากฐานข้อมูล
+  cartItems: CartItem[] = [];
+  customerName: string = '';
+  customerPhone: string = '';
 
-  constructor(private navCtrl: NavController, private router: Router, private cartService: CartService) {}
+  constructor(
+    private navCtrl: NavController,
+    private router: Router,
+    private cartService: CartService,
+    private http: HttpClient,
+    private alertCtrl: AlertController
+  ) {}
 
   ngOnInit() {
-    this.loadCart(); // โหลดข้อมูลสินค้าตอนเปิดหน้า
+    this.loadCart();
   }
 
   // ✅ โหลดข้อมูลสินค้าจาก API
   loadCart() {
     this.cartService.getCartItems().subscribe({
       next: (res) => {
-        this.cartItems = res; // เก็บข้อมูลสินค้าในตัวแปร
+        this.cartItems = res;
         console.log('📌 สินค้าในตะกร้า:', this.cartItems);
       },
       error: (err) => {
@@ -39,12 +48,12 @@ export class TakraPage implements OnInit {
     });
   }
 
-  // ✅ คำนวณยอดรวม
-  get totalPrice() {
+  // ✅ คำนวณยอดรวมของสินค้าที่อยู่ในตะกร้า
+  get totalPrice(): number {
     return this.cartItems.reduce((sum, item) => sum + (item.price * item.quantity), 0);
   }
 
-  // ✅ ฟังก์ชันลบสินค้าออกจากตะกร้า
+  // ✅ ลบสินค้าออกจากตะกร้า
   removeFromCart(productId: number) {
     this.cartService.removeFromCart(productId).subscribe({
       next: () => {
@@ -57,6 +66,74 @@ export class TakraPage implements OnInit {
     });
   }
 
+  // ✅ แสดง Alert กรอกชื่อ + เบอร์โทร
+  async showConfirmAlert() {
+    const alert = await this.alertCtrl.create({
+      header: 'กรุณากรอกข้อมูล',
+      inputs: [
+        {
+          name: 'name',
+          type: 'text',
+          placeholder: 'ชื่อ-นามสกุล',
+        },
+        {
+          name: 'phone',
+          type: 'tel',
+          placeholder: 'เบอร์โทรศัพท์',
+          attributes: {
+            maxlength: 10,
+          },
+        },
+      ],
+      buttons: [
+        {
+          text: 'ยกเลิก',
+          role: 'cancel',
+          handler: () => {
+            console.log('❌ Alert canceled');
+          },
+        },
+        {
+          text: 'ยืนยัน',
+          handler: (data) => {
+            console.log('✅ Alert confirmed', data);
+            this.customerName = data.name;
+            this.customerPhone = data.phone;
+            this.confirmQueue(); // ✅ บันทึกคิวหลังจากได้รับค่าจากฟอร์ม
+          },
+        },
+      ],
+    });
+
+    await alert.present();
+  }
+
+  // ✅ ฟังก์ชันบันทึกคิวเมื่อกดยืนยัน
+  confirmQueue() {
+    if (!this.customerName || !this.customerPhone) {
+      alert('กรุณากรอกชื่อและเบอร์โทร');
+      return;
+    }
+
+    const data = {
+      name: this.customerName,
+      phone: this.customerPhone,
+      cartItems: this.cartItems.map((item) => ({
+        name: item.name,
+        price: item.price,
+        imageURL: item.imageURL,
+      })),
+    };
+
+    this.http.post('http://localhost/jajasuperholyshit/api/add_queue.php', data)
+      .subscribe((res: any) => {
+        alert('คิวที่ ' + res.queue_id + ' ถูกบันทึกแล้ว');
+        this.router.navigate(['/booking-form', { queue_id: res.queue_id }]); // ✅ เปลี่ยนไปหน้า booking-form
+      }, error => {
+        alert('❌ เกิดข้อผิดพลาดในการบันทึกคิว');
+      });
+  }
+
   // ✅ นำทางไปยังหน้าสรุปการสั่งซื้อ
   goToCheckout() {
     if (this.cartItems.length > 0) {
@@ -65,34 +142,4 @@ export class TakraPage implements OnInit {
       alert('ตะกร้าของคุณว่างเปล่า กรุณาเพิ่มสินค้าในตะกร้า');
     }
   }
-
-  public alertButtons = [
-    {
-      text: 'ยกเลิก',
-      role: 'cancel',
-      handler: () => {
-        console.log('❌ Alert canceled');
-      },
-    },
-    {
-      text: 'ยืนยัน',
-      role: 'confirm',
-      handler: () => {
-        console.log('✅ Alert confirmed');
-        this.router.navigate(['../../booking-form']);
-      },
-    },
-  ];
-
-  public alertInputs = [
-    {
-      placeholder: 'ชื่อ-นามสกุล',
-    },
-    {
-      placeholder: 'เบอร์โทรศัพท์',
-      attributes: {
-        maxlength: 10,
-      },
-    },
-  ];
 }

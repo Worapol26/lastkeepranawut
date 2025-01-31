@@ -33,15 +33,10 @@
           </ion-card-content>
         </ion-card>
 
-        <ion-button id="present-alert" expand="full" color="success">
-          จองคิว
+        <!-- ✅ ใช้ showConfirmAlert() แทน alertButtons / alertInputs -->
+        <ion-button expand="full" color="success" (click)="showConfirmAlert()">
+          ยืนยัน
         </ion-button>
-        <ion-alert
-          trigger="present-alert"
-          header="กรุณากรอกข้อมูล"
-          [buttons]="alertButtons"
-          [inputs]="alertInputs">
-        </ion-alert>
       </ion-col>
     </ion-row>
   </ion-grid>

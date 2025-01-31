@@ -1,30 +1,27 @@
-.order-details {
-    text-align: center;
-    margin-top: 20px;
-  }
-  
-  ion-card-title {
-    font-size: 1.5rem;
-    font-weight: bold;
-    background-color: #ffc823;
-    padding: 10px;
-    border-radius: 10px;
-  }
-  
-  ion-button {
-    margin-top: 10px;
-    font-size: 1.2rem;
-  }
-  
-  ion-button[color="success"] {
-    background-color: #27ae60;
-  }
-  
-  ion-button[color="danger"] {
-    background-color: #e74c3c;
-  }
-  
-  ion-button[color="secondary"] {
-    background-color: #c0392b;
-  }
-  
+ion-content {
+  background: #f8f9fa; /* เพิ่มสีพื้นหลังให้อ่อนลง */
+}
+
+.order-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px;
+  border-bottom: 1px solid #ddd; /* เส้นแบ่งระหว่างแต่ละรายการ */
+}
+
+.order-label {
+  flex: 1; /* ทำให้ข้อความอยู่ฝั่งซ้าย */
+  padding-right: 10px;
+}
+
+.button-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px; /* ระยะห่างระหว่างปุ่ม */
+}
+
+ion-button {
+  width: 100%; /* ทำให้ปุ่มเต็มความกว้าง */
+  font-size: 14px;
+}

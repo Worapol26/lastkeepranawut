@@ -1,28 +1,33 @@
-
-
 <ion-content class="ion-padding">
   <div class="booking-card">
     <h2 class="booking-title">การจองคิวเสร็จสิ้น!!</h2>
     <p class="queue-label">หมายเลขคิว</p>
     <div class="queue-number">
-      01
+      {{ queueNumber }}
     </div>
-    <ion-button color="success" expand="full" [routerLink]="['/home']">
+    <ion-button color="success" expand="full" (click)="completeBooking()">
       เสร็จสิ้น
     </ion-button>
   </div>
 </ion-content>
 
 <style>
-   ion-content {
+  ion-content {
     display: flex;
     justify-content: center; /* จัดให้อยู่กึ่งกลางในแนวนอน */
     align-items: center; /* จัดให้อยู่กึ่งกลางในแนวตั้ง */
     height: 100vh; /* ใช้ความสูงเต็มหน้าจอ */
   }
   .booking-card {
-    border: 2px solid #000000; /* ขอบหนา 2px สีเขียวเข้ม */
+    border: 2px solid #000000; /* ขอบหนา 2px สีดำ */
     border-radius: 8px; /* ทำให้ขอบมน */
     padding: 16px; /* เพิ่มพื้นที่ขอบด้านใน */
+    text-align: center; /* จัดข้อความให้อยู่ตรงกลาง */
+  }
+  .queue-number {
+    font-size: 48px;
+    font-weight: bold;
+    color: #ff0066; /* สีชมพูสด */
+    margin: 10px 0;
   }
 </style>

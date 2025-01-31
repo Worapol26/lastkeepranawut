@@ -4,35 +4,29 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
-  <div class="order-details">
-    <ion-card>
-      <ion-card-header>
-        <ion-card-title>
-          รายการสั่งซื้อ
-        </ion-card-title>
-      </ion-card-header>
-      <ion-card-content>
-        <p>คุณ: ปิยังกูร อัมพร | คิวที่: 1</p>
-        <p>เบอร์โทร: 0819141884</p>
-        
-        <!-- ปุ่มต่างๆ ย้ายมาอยู่ภายใน ion-card -->
-        <ion-button expand="block" color="success" (click)="goToOrderList()">
+<ion-content class="ion-padding">
+  <h2 class="ion-text-center">รายการคิวทั้งหมด</h2>
+
+  <ion-list>
+    <ion-item *ngFor="let order of orders" class="order-item">
+      <ion-label class="order-label">
+        <h3>คุณ: {{ order.name }} | คิวที่: {{ order.queue_number }}</h3>
+        <p>📞 เบอร์โทร: {{ order.phone }}</p>
+      </ion-label>
+
+      <div class="button-group">
+        <ion-button expand="full" color="success" (click)="goToOrderList(order.id)">
           ดูรายการอาหาร
         </ion-button>
 
-        <ion-button expand="block" color="danger">
+        <ion-button expand="full" color="danger" (click)="completeOrder(order.id)">
           เสร็จสิ้น
         </ion-button>
-           <!--รายการที่สองงงงงงงงงงงงงง-->
-       
+      </div>
+    </ion-item>
+  </ion-list>
 
-        <ion-button expand="block" color="secondary" (click)="logout()">
-          กลับไปหน้าแรก
-        </ion-button>
-      </ion-card-content>
-    </ion-card>
-  </div>
-
-  
+  <ion-button expand="full" color="primary" (click)="logout()">
+    กลับไปหน้าแรก
+  </ion-button>
 </ion-content>
